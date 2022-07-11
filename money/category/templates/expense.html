@@ -4,10 +4,22 @@
 	<title>Expence</title>
 </head>
 <body>
-	<form action="" method="post" novalidate>
-	{% csrf_token %}
-	{{ form.as_p}}
-	<input type="submit" value="Submit">
-	</form>
+	<div id = "form">
+		<form action="" method="post" novalidate>
+		{% csrf_token %}
+		{{ form.as_p}}
+		<input type="submit" value="Submit">
+		</form>
+	</div>
+		<div id = "report">
+		<!-- loop in value of cat. the value is array and all of it's items are dic -->
+		{% for a in cat %} 
+			<!-- loop in array's item that arr dic for get price(value) and source(key)  -->
+			{% for key,value in a.items%} 
+			<li>{{ key }}</li>
+			<li>{{ value }}</li>
+			{% endfor %}
+		{% endfor %}
+	</div>
 </body>
 </html>
