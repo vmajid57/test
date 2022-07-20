@@ -1,25 +1,61 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
+	<title></title>
+</head>
+<body max-height: 900px>
+
+</body>
+</html>
+<head>
 	<title>Expence</title>
+	<style>
+		table, td, th {
+  			border: 1px solid;
+		}
+		#report {
+			margin: 3rem;
+			padding: 1rem;
+			height: 20rem;
+			width: 75rem;
+			background-color: #d5f5e3;
+			overflow-y: hidden;
+		}
+
+		#table {
+			width: 100%;
+			border-collapse: collapse;
+
+		}
+	</style>
 </head>
 <body>
 	<div id = "form">
-		<form action="" method="post" novalidate>
+		<form action="" method="post">
 		{% csrf_token %}
 		{{ form.as_p}}
 		<input type="submit" value="Submit">
 		</form>
 	</div>
-		<div id = "report">
-		<!-- loop in value of cat. the value is array and all of it's items are dic -->
-		{% for a in cat %} 
-			<!-- loop in array's item that arr dic for get price(value) and source(key)  -->
-			{% for key,value in a.items%} 
-			<li>{{ key }}</li>
-			<li>{{ value }}</li>
+
+	<div id = "report">
+		<table id = "table">
+			<tr>
+				<th>Source</th>
+				<th>Price</th>
+			</tr>
+			<!-- loop in value of cat. the value is array and all of it's items are dic -->
+			{% for a in cat %} 
+				<!-- loop in array's item that arr dic for get price(value) and source(key)  -->
+				{% for key,value in a.items%} 
+				<tr>
+					<td>{{ key }}</td>
+					<td>{{ value }}</td>
+				</tr>
+				{% endfor %}
 			{% endfor %}
-		{% endfor %}
+		</table>
 	</div>
 </body>
 </html>

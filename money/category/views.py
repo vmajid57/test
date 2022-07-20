@@ -17,22 +17,26 @@ def add_expence(request):
 			
 			# for create object from source and price
 			arr = []
-			context = {}
-			
 			for item in Category.objects.all():
 				# every row > {'source' : price}
 				temp = {}
 				temp[item.source] = item.price
 				arr.append(temp) #every row append to array
 			
-			#final dic for pass to template. i don't know why i do this :))
+			#TODO: think about why template just give dict
 			#cat is name for key
-			context['cat'] = arr 
-			return HttpResponse(template.render(context, request))        
+			return HttpResponse(template.render({'form': form, 'cat': arr}, request))        
 	else:
 		form = InputExpence()
-	
-	return render(request,'expense.html',{'form': form})  # pass that form to the template
+		#TODO: do this for loop once. this loop repeat in if and else block.
+		arr = []
+		for item in Category.objects.all():
+			# every row > {'source' : price}
+			temp = {}
+			temp[item.source] = item.price
+			arr.append(temp)
+	#TODO: why this line was out of the block? i dont know why
+	return render(request,'expense.html',{'form': form, 'cat': arr})  # pass that form to the template
 
 def thanks(request):
 	return HttpResponse("thnk you")
