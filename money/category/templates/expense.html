@@ -45,16 +45,13 @@
 				<th>Source</th>
 				<th>Price</th>
 			</tr>
-			<!-- loop in value of cat. the value is array and all of it's items are dic -->
-			{% for a in cat %} 
-				<!-- loop in array's item that arr dic for get price(value) and source(key)  -->
-				{% for key,value in a.items%} 
+			<!-- loop in value of cat. the value is dict -->
+			{% for a in cat %}
 				<tr>
-					<td>{{ key }}</td>
-					<td>{{ value }}</td>
+					<td>{{ a.source }}</td>
+					<td>{{ a.price }}</td>
 				</tr>
-				{% end for %}
-			{% end for %}
+			{% endfor %}
 		</table>
 	</div>
 </body>
